@@ -881,6 +881,17 @@ function MarnyApp() {
           <div className="md:hidden border-t border-border/50 bg-white/95 backdrop-blur-md px-4 py-3 flex flex-col gap-1">
             <button
               type="button"
+              data-ocid="nav.mobile.home.link"
+              className="text-left w-full px-3 py-2 rounded-lg text-sm font-semibold text-foreground/70 hover:text-primary hover:bg-primary/5 transition-colors"
+              onClick={() => {
+                setPage("home");
+                setMobileMenuOpen(false);
+              }}
+            >
+              Home
+            </button>
+            <button
+              type="button"
               data-ocid="nav.mobile.flavours.link"
               className="text-left w-full px-3 py-2 rounded-lg text-sm font-semibold text-foreground/70 hover:text-primary hover:bg-primary/5 transition-colors"
               onClick={() => {
@@ -900,6 +911,17 @@ function MarnyApp() {
               }}
             >
               FAQ
+            </button>
+            <button
+              type="button"
+              data-ocid="nav.mobile.login.link"
+              className="text-left w-full px-3 py-2 rounded-lg text-sm font-semibold text-foreground/70 hover:text-primary hover:bg-primary/5 transition-colors"
+              onClick={() => {
+                setPage("login");
+                setMobileMenuOpen(false);
+              }}
+            >
+              Login
             </button>
           </div>
         )}
