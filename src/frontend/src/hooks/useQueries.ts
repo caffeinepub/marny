@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { useActor } from "./useActor";
 
 export interface Product {
@@ -9,7 +9,7 @@ export interface Product {
   pricePerCap: bigint;
 }
 
-const FALLBACK_PRODUCTS: Product[] = [
+const PRODUCTS: Product[] = [
   {
     id: 1n,
     name: "Green Apple Fizz",
@@ -93,23 +93,7 @@ const FALLBACK_PRODUCTS: Product[] = [
 ];
 
 export function useProducts() {
-  const { actor, isFetching } = useActor();
-  return useQuery<Product[]>({
-    queryKey: ["products"],
-    queryFn: async () => {
-      if (!actor) return FALLBACK_PRODUCTS;
-      try {
-        await actor.initialize();
-        const products = await actor.getAllProducts();
-        if (!products || products.length === 0) return FALLBACK_PRODUCTS;
-        return products;
-      } catch {
-        return FALLBACK_PRODUCTS;
-      }
-    },
-    enabled: !isFetching,
-    initialData: FALLBACK_PRODUCTS,
-  });
+  return { data: PRODUCTS, isLoading: false };
 }
 
 export function usePlaceOrder() {
